@@ -1,9 +1,9 @@
--- Active: 1792478757853@@127.0.0.1@3306@lms_database
 CREATE TABLE IF NOT EXISTS roles (
     role_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     role_name VARCHAR(50) NOT NULL UNIQUE,
     description VARCHAR(255) NULL,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP)
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
 
 CREATE TABLE IF NOT EXISTS users (
     user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -18,3 +18,14 @@ CREATE TABLE IF NOT EXISTS users (
     FOREIGN KEY (role_id) REFERENCES roles(role_id)
 )
 
+CREATE TABLE IF NOT EXISTS courses (
+    course_id INT NOT NULL PRIMARY KEY,
+    course_code VARCHAR(30) NOT NULL UNIQUE,
+    course_name VARCHAR(150) NOT NULL,
+    description TEXT,
+    instructor_id INT NOT NULL,
+    status ENUM('draft', 'published', 'archived'),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (instructor_id) REFERENCES users(user_id)
+)

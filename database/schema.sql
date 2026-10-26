@@ -104,4 +104,4 @@ CREATE TABLE IF NOT EXISTS lessons (
     FOREIGN KEY (course_id) REFERENCES courses(course_id)
     ON DELETE CASCADE
 
-)
+);

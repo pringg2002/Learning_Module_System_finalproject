@@ -91,4 +91,17 @@ CREATE TABLE IF NOT EXISTS attempt_answers (
     FOREIGN KEY (question_id) REFERENCES questions(question_id)
     ON DELETE CASCADE 
 
-);
+)
+
+CREATE TABLE IF NOT EXISTS lessons (
+    lessons_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    course_id INT NOT NULL,
+    title VARCHAR(150) NOT NULL,
+    description TEXT,
+    content TEXT,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (course_id) REFERENCES courses(course_id)
+    ON DELETE CASCADE
+
+)
